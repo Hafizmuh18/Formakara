@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container mt-5">
+    <form method="GET" action="{% url 'ticket:ticket_data' %}" class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" name="q" placeholder="Search by name or ID" value="{{ query }}">
+            <button type="submit" class="btn btn-outline-primary">Search</button>
+        </div>
+    </form>
+    
+    <div class="row">
+        {% for ticket in tickets %}
+        <div class="col-md-4 mb-4">
+            <div class="card {% if ticket.used == 'Yes' %} bg-secondary text-white {% endif %}">
+                <img src="{{ ticket.tf.url }}" class="card-img-top" alt="Proof of Transfer">
+                <div class="card-body">
+                    <h5 class="card-title">YBM-TKT-{{ ticket.pk }}</h5>
+                    <p class="card-text">
+                        <strong>Nama:</strong> {{ ticket.nama }}<br>
+                        <strong>Kontak:</strong> {{ ticket.kontak }}<br>
+                        <strong>Tipe:</strong> {{ ticket.tipe }}<br>
+                        <strong>Used:</strong> {{ ticket.used }}
+                    </p>
+                    {% if ticket.used == 'No' %}
+                        <a href="{% url 'ticket:mark_ticket_as_used' ticket_id=ticket.pk %}" class="btn btn-primary">Mark as Used</a>
+                    {% else %}
+                        <a href="{% url 'ticket:mark_ticket_as_not_used' ticket_id=ticket.pk %}" class="btn btn-warning">Mark as Not Used</a>
+                    {% endif %}
+                    <a href="{% url 'ticket:delete_ticket' ticket_id=ticket.pk %}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

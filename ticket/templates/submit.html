@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    body {
+        background-image: url('/static/images/mergedbg.png');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: repeat; /* Set background-repeat to repeat */
+        margin: 0; /* Remove default body margin */
+    }
+
+    .navbar {
+        z-index: 1000; /* Ensure the navbar appears above the background image */
+    }
+
+    .card {
+        width: 90%;
+        max-width: 400px;
+        border-radius: 10px;
+        margin: 5% auto;
+        background: #f6f2d7;
+        overflow: hidden;
+        font-family: 'Mount Hills', sans-serif;
+    }
+
+    .card-header {
+        height: 10%;
+        border: 2px solid #836602;
+        border-bottom: 2px dotted #836602;
+        border-radius: 10px 10px 0 0;
+        position: relative;
+        text-align: center;
+        font-size: 4vw; /* Increase font size for the header */
+    }
+
+    .card-header:before,
+    .card-header:after {
+        content: '';
+        position: absolute;
+        width: 2.5vw;
+        height: 2.5vw;
+        background: #fff;
+        border-radius: 100%;
+        bottom: -1.25vw;
+        border: 2px solid #836602;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .card-header:before {
+        left: -1.25vw;
+        text-align: center;
+    }
+
+    .card-header:after {
+        right: -1.25vw;
+        text-align: center;
+    }
+
+    .card-body {
+        height: 60%;
+        border: 2px solid #836602;
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        font-size: 3vw; /* Increase font size for the body */
+        overflow: hidden; /* Ensure content doesn't overflow */
+    }
+
+    @font-face {
+        font-family: 'Mount Hills';
+        src: url('/static/fonts/mount_hills/MountHills.otf') format('opentype');
+    }
+
+    @media (max-width: 600px) {
+        .card {
+            width: 90%;
+            margin: 5% auto;
+        }
+
+        .card-header {
+            font-size: 6vw; /* Adjust font size for smaller screens */
+        }
+
+        .card-body {
+            font-size: 4vw; /* Adjust font size for smaller screens */
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .card {
+            width: 40%;
+            margin: 2% auto;
+        }
+
+        .card-header {
+            font-size: 4.5vw; /* Increase font size for larger screens */
+        }
+
+        .card-body {
+            font-size: 3vw; /* Increase font size for larger screens */
+        }
+    }
+
+    @media (min-width: 601px) and (max-width: 1200px) {
+        .card {
+            width: 70%; /* Adjust width for medium-sized screens */
+            margin: 5% auto;
+        }
+
+        .card-header {
+            font-size: 5vw; /* Adjust font size for medium-sized screens */
+        }
+
+        .card-body {
+            font-size: 3.5vw; /* Adjust font size for medium-sized screens */
+        }
+    }
+
+    .card2 {
+        background: rgba(255, 255, 255, 0.303);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+        color: white;
+        margin-top: 20px; /* Add some margin between the two cards */
+    }
+
+    .card-body2 {
+        font-weight: bold;
+        font-size: 20px;
+    }
+</style>
+
+<div class="card2">
+    <div class="card-body2">
+        Thankyou for joining the YBM UI Event<br>Here's yout ticket!
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">YBM UI 2024<br>YBM-TKT-{{ ticket.pk }}</div>
+    <div class="card-body">
+        Nama : {{ ticket.nama }}<br><br>
+        Tiket : {{ ticket.tipe }}<br><br>
+        Kontak : {{ ticket.kontak }}
+    </div>
+</div>
+
+<div class="card2">
+    <div class="card-body2">
+        Screenshot Ticket
+    </div>
+</div>
+
+{% endblock content %}

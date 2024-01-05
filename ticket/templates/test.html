@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+    body {
+        background-image: url('/static/images/bg.png');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: repeat; /* Set background-repeat to repeat */
+        height: 100vh;
+        margin: 0;
+        font-family: 'Mount Hills', sans-serif;
+        color: white;
+    }
+
+    .card {
+        background: rgba(172, 80, 242, 0.58);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+        color: white;
+    }
+
+    .card-body {
+        font-weight: bold;
+        font-size: 40px;
+    }
+
+    .form-container {
+        background: none;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        color: white;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left; /* Align text to the left for better readability */
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    @font-face {
+        font-family: 'Mount Hills';
+        src: url('/static/fonts/mount_hills/MountHills.otf') format('opentype');
+    }
+</style>
+
+<!-- Your actual content goes here -->
+<div>
+    <div class="card">
+        <div class="card-body">
+            Ticket
+        </div>
+    </div>
+    <div class="form-container">
+        <form action="/submit" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="nama">Nama :</label>
+                <input type="text" id="nama" name="nama" required>
+            </div>
+
+            <div class="form-group">
+                <label for="kontak">Kontak (Id Line / No Wa):</label>
+                <input type="text" id="kontak" name="kontak" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tipe">Tipe Tiket:</label>
+                <select id="tipe" name="tipe" required>
+                    <option value="seminar">Seminar</option>
+                    <option value="to">Try Out</option>
+                    <option value="bundle">Bundling</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="priceDescription">
+                    Price Description:<br>
+                    List harga early bird<br>
+                    try out = 20k<br>
+                    seminar = 30k<br>
+                    bundling = 45k<br><br>
+
+                    List harga presale 1<br>
+                    try out = 25k<br>
+                    seminar = 35k<br>
+                    bundling = 55k
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="tf">Proof of Transfer (Image):</label>
+                <input type="file" id="tf" name="tf" accept="image/*" required>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
