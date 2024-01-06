@@ -20,15 +20,16 @@
         max-width: 400px;
         border-radius: 10px;
         margin: 5% auto;
-        background: #f6f2d7;
+        background: #8a05d6d9;
         overflow: hidden;
         font-family: 'Mount Hills', sans-serif;
+        color: #f4d17f;
     }
 
     .card-header {
         height: 10%;
-        border: 2px solid #836602;
-        border-bottom: 2px dotted #836602;
+        border: 2px solid #3e0161d9;
+        border-bottom: 2px dotted #3e0161d9;
         border-radius: 10px 10px 0 0;
         position: relative;
         text-align: center;
@@ -44,7 +45,7 @@
         background: #fff;
         border-radius: 100%;
         bottom: -1.25vw;
-        border: 2px solid #836602;
+        border: 2px solid #3e0161d9;
         box-sizing: border-box;
         text-align: center;
     }
@@ -61,7 +62,7 @@
 
     .card-body {
         height: 60%;
-        border: 2px solid #836602;
+        border: 2px solid #3e0161d9;
         border-top: none;
         border-radius: 0 0 10px 10px;
         font-size: 3vw; /* Increase font size for the body */
@@ -119,12 +120,12 @@
     }
 
     .card2 {
-        background: rgba(255, 255, 255, 0.303);
+        background: #8a05d6d9;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         padding: 20px;
         text-align: center;
-        color: white;
+        color: #f4d17f;
         margin-top: 20px; /* Add some margin between the two cards */
     }
 
@@ -140,19 +141,37 @@
     </div>
 </div>
 
-<div class="card">
-    <div class="card-header">YBM UI 2024<br>YBM-TKT-{{ ticket.pk }}</div>
-    <div class="card-body">
-        Nama : {{ ticket.nama }}<br><br>
-        Tiket : {{ ticket.tipe }}<br><br>
-        Kontak : {{ ticket.kontak }}
+<div class="card2">
+    <div class="card-body2">
+        Salin kode tiket dan screenshot ticket buat disimpan
     </div>
 </div>
 
-<div class="card2">
-    <div class="card-body2">
-        Screenshot Ticket
+<div class="card">
+    <div class="card-header">{{ ticket.kode }}</div>
+    <div class="card-body">
+        Nama : {{ ticket.nama }}<br><br>
+        Tiket : {{ ticket.tipe }}<br><br>
+        Kontak : {{ ticket.kontak }}<br><br>
+        Nama 2 : {{ ticket.nama2 }}<br><br>
+        Kontak 2 : {{ ticket.kontak2 }}<br><br>
+        Note : {{ ticket.note }}<br><br>
+        Status : {{ ticket.status }}<br><br>
+        {{ ticket. }}
     </div>
 </div>
+<div class="card2">
+    <label for="priceDescription">
+        Narahubung : <br>
+        Nata <br>
+        id line : faintlily<br>
+        wa : 081346099332<br><br>
+        Nayang<br>
+        id line : nayangnurizah<br>
+        wa : 085172204893<br><br>
+    </label>
+</div>
+
+
 
 {% endblock content %}

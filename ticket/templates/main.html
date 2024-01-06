@@ -48,15 +48,17 @@
         margin-bottom: 5px;
     }
 
-    input, select {
+    input, select, textarea {
         width: 100%;
         padding: 8px;
         box-sizing: border-box;
         margin-bottom: 10px;
+        background-color: rgba(138, 43, 226, 0.58); /* Adjust the background color for input and select */
+        color: white;
     }
 
     button {
-        background-color: #4CAF50;
+        background-color: #430a63;
         color: white;
         padding: 10px 15px;
         border: none;
@@ -68,6 +70,23 @@
         font-family: 'Mount Hills';
         src: url('/static/fonts/mount_hills/MountHills.otf') format('opentype');
     }
+
+    input[type="file"] {
+        display: none; /* Hide the default file input button */
+    }
+
+    .file-input-label {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        background-color: rgba(138, 43, 226, 0.58); /* Adjust the background color for the custom button */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block;
+    }
 </style>
 
 <!-- Your actual content goes here -->
@@ -78,7 +97,7 @@
         </div>
     </div>
     <div class="form-container">
-        <form action="{% url 'ticket:submit_ticket' %}" method="post" enctype="multipart/form-data">
+        <form action="{% url 'ticket:submit_ticket' %}" method="post" enctype="multipart/form-data" id="ticketForm">
             {% csrf_token %}
 
             <div class="form-group">
@@ -92,36 +111,85 @@
             </div>
 
             <div class="form-group">
-                <label for="tipe">Tipe Tiket:</label>
-                <select id="tipe" name="tipe" required>
-                    <option value="seminar">Seminar</option>
-                    <option value="to">Try Out</option>
-                    <option value="bundle">Bundling</option>
-                </select>
-            </div>
-
-            <div class="form-group">
                 <label for="priceDescription">
                     Price Description:<br>
-                    List harga early bird<br>
+                    List harga early bird (8-13 Januari)<br>
                     try out = 20k<br>
                     seminar = 30k<br>
-                    bundling = 45k<br><br>
+                    bundling 1 orang = 45k<br>
+                    bundling 2 orang = 85k<br><br>
 
-                    List harga presale 1<br>
+                    List harga presale 1 (14-19 Januari)<br>
                     try out = 25k<br>
                     seminar = 35k<br>
-                    bundling = 55k
+                    bundling 1 orang = 55k<br>
+                    bundling 2 orang = 85k<br><br>
                 </label>
             </div>
 
             <div class="form-group">
-                <label for="tf">Proof of Transfer (Image):</label>
+                <label for="tipe">Tipe Tiket:</label>
+                <select id="tipe" name="tipe" required>
+                    <option value="Seminar">Seminar</option>
+                    <option value="Try Out">Try Out</option>
+                    <option value="Bundle 1">Bundling 1</option>
+                    <option value="Bundle 2">Bundling 2</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="bundle2Fields" style="display: none;">
+                <label for="nama2">Nama orang ke 2:</label>
+                <input type="text" id="nama2" name="nama2">
+            </div>
+
+            <div class="form-group" id="bundle2Fields1" style="display: none;">
+                <label for="kontak2">Kontak orang ke 2:</label>
+                <input type="text" id="kontak2" name="kontak2">
+            </div>
+
+            <div class="form-group">
+                <label for="tf">Bukti Transfer (Image):</label>
                 <input type="file" id="tf" name="tf" accept="image/*" required>
+                <label class="file-input-label" for="tf">Choose File</label>
+            </div>            
+            
+            <div class="form-group">
+                <label for="note">Note tambahan (Jika Perlu):</label>
+                <textarea id="note" name="note" rows="4" cols="50"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="priceDescription">
+                    Narahubung : <br>
+                    Nata <br>
+                    id line : faintlily<br>
+                    wa : 081346099332<br><br>
+                    Nayang<br>
+                    id line : nayangnurizah<br>
+                    wa : 085172204893<br><br>
+                </label>
             </div>
 
             <button type="submit">Submit</button>
+            
         </form>
     </div>
 </div>
+
+<script>
+    document.getElementById('tipe').addEventListener('change', function() {
+        var bundle2Fields = document.getElementById('bundle2Fields');
+        var bundle2Fields1 = document.getElementById('bundle2Fields1');
+        if (this.value === 'Bundle 2') {
+            bundle2Fields.style.display = 'block';
+            bundle2Fields1.style.display = 'block';
+        } else {
+            bundle2Fields.style.display = 'none';
+            bundle2Fields1.style.display = 'none';
+            bundle2Fields.value = '-';
+            bundle2Fields1.value = '-';
+        }
+    });
+</script>
+
 {% endblock %}

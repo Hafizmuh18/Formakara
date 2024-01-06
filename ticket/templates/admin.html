@@ -16,17 +16,29 @@
             <div class="card {% if ticket.used == 'Yes' %} bg-secondary text-white {% endif %}">
                 <img src="{{ ticket.tf.url }}" class="card-img-top" alt="Proof of Transfer">
                 <div class="card-body">
-                    <h5 class="card-title">YBM-TKT-{{ ticket.pk }}</h5>
+                    <h5 class="card-title">{{ ticket.kode }}</h5>
                     <p class="card-text">
                         <strong>Nama:</strong> {{ ticket.nama }}<br>
                         <strong>Kontak:</strong> {{ ticket.kontak }}<br>
                         <strong>Tipe:</strong> {{ ticket.tipe }}<br>
-                        <strong>Used:</strong> {{ ticket.used }}
+                        {% if ticket.tipe == 'Bundle 2' %}
+                        <strong>Nama 2:</strong> {{ ticket.nama2 }}<br>
+                        <strong>Kontak 2:</strong> {{ ticket.kontak2 }}<br>
+                        {% endif %}
+                        <strong>Used:</strong> {{ ticket.used }}<br>
+                        <strong>Note:</strong> {{ ticket.note }}<br>
+                        <strong>Status:</strong> {{ ticket.status }}<br>
+                        <strong>Tanggal:</strong> {{ ticket.created_at }}<br>
                     </p>
                     {% if ticket.used == 'No' %}
                         <a href="{% url 'ticket:mark_ticket_as_used' ticket_id=ticket.pk %}" class="btn btn-primary">Mark as Used</a>
                     {% else %}
                         <a href="{% url 'ticket:mark_ticket_as_not_used' ticket_id=ticket.pk %}" class="btn btn-warning">Mark as Not Used</a>
+                    {% endif %}
+                    {% if ticket.status == 'Tunggu Konfirmasi' %}
+                        <a href="{% url 'ticket:set_payed' ticket_id=ticket.pk %}" class="btn btn-primary">Set Sudah Bayar</a>
+                    {% else %}
+                        <a href="{% url 'ticket:set_unpayed' ticket_id=ticket.pk %}" class="btn btn-warning">Set Tunggu Konfirmasi</a>
                     {% endif %}
                     <a href="{% url 'ticket:delete_ticket' ticket_id=ticket.pk %}" class="btn btn-danger">Delete</a>
                 </div>

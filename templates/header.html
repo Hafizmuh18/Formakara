@@ -1,14 +1,72 @@
 <style>
-    .bg-custom-yellow {
-      background-color: rgb(255, 230, 0);
-    }
-  </style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .bg-custom-yellow {
+    background-color: rgb(255, 230, 0);
+    text-align: center;
+  }
+
+  .navbar-brand {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem; /* Adjust the size as needed */
+    color: rgb(238, 45, 20); /* Text color for the whole navbar-brand */
+    margin-left: 20px; /* Adjust the margin for the whole navbar-brand */
+  }
+
+  .logo {
+    margin-right: 10px; /* Adjust the spacing between the images */
+  }
+
+  .search-form {
+    margin-left: auto; /* Push the search form to the right */
+  }
+
+  /* Updated styles for the search bar and button */
+  .form-inline .form-control {
+    background-color: rgba(138, 43, 226, 0.3); /* Adjust the background color for the search bar */
+    color: white; /* Text color for the search bar */
+  }
+
+  .form-inline .btn-outline-success {
+    background-color: #430a63; /* Dark purple color for the button */
+    color: white; /* Text color for the button */
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.getElementById('search-form');
+    const searchInput = document.getElementById('search-input');
+
+    searchForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const ticketKode = searchInput.value.trim();
+      if (ticketKode) {
+        window.location.href = `/ticket/${ticketKode}/`;
+      }
+    });
+  });
+</script>
 
 <nav class="navbar navbar-expand-lg bg-custom-yellow" data-bs-theme="yellow">
-    <a class="navbar-brand" href="{% url 'ticket:make_ticket' %}">
-        <img src="/static/images/logoybm.jpg" alt="Image" width="70" height="50" class="d-inline-block align-text-top">
-        Formakara
-    </a>
-      </div>
-    </div>
-  </nav>
+  <a class="navbar-brand" href="{% url 'ticket:make_ticket' %}">
+    <img src="/static/images/purelogo.png" alt="Image" width="60" height="60" class="d-inline-block align-text-top logo">
+    <img src="/static/images/text.png" alt="Image" width="180" height="40" class="d-inline-block align-text-top logo">
+  </a>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <form class="form-inline ml-auto search-form" id="search-form">
+      <input class="form-control mr-sm-2" type="search" placeholder="Kode Tiket" aria-label="Search" id="search-input">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Ticket</button>
+    </form>
+  </div>
+</nav>
