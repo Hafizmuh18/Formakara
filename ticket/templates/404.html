@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container text-center mt-5">
+    <h1 class="display-1">404</h1>
+    <p class="lead">Oops! Page not found.</p>
+    <p class="lead">The requested page could not be found, but don't worry, we're here to help.</p>
+    <a href="{% url 'ticket:make_ticket' %}" class="btn btn-primary mt-3">Kembali ke membeli tiket</a>
+</div>
+{% endblock %}

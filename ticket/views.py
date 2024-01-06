@@ -5,6 +5,9 @@ from django.db.models import Q
 import random
 import string
 
+def custom_404(request, *args, **kwargs):
+    return render(request, '404.html', status=404)
+
 def generate_random_string(length=4):
     characters = string.ascii_uppercase + string.digits
     random_string = ''.join(random.choice(characters) for _ in range(length))
@@ -50,7 +53,7 @@ def submit_ticket(request):
         # Redirect to the 'show_ticket' view with the ticket ID as a parameter
         return redirect('ticket:show_ticket', ticket_kode=ticket_submission.kode)
     else:
-        return render(request, 'main.html')
+        return render(request, '404.html')
 
 def show_ticket(request, ticket_kode):
     # Retrieve the TicketSubmission object based on the ticket_id

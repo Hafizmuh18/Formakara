@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from .views import *
 
 app_name = 'ticket'
@@ -13,4 +13,5 @@ urlpatterns = [
     path('set_payed/<int:ticket_id>/', set_payed, name='set_payed'),
     path('set_unpayed/<int:ticket_id>/', set_unpayed, name='set_unpayed'),
     path('delete/<int:ticket_id>/', delete_ticket, name='delete_ticket'),
+    re_path(r'^.*$', custom_404, name='custom_404'),
 ]
