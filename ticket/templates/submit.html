@@ -4,7 +4,7 @@
 {% load static %}
 <style>
     body {
-        background-image: url('/static/images/mergedbg.png');
+        background-image: url('{% static "images/mergedbg.png" %}');
         background-size: cover;
         background-position: center center;
         background-repeat: repeat; /* Set background-repeat to repeat */
@@ -71,7 +71,7 @@
 
     @font-face {
         font-family: 'Mount Hills';
-        src: url('/static/fonts/mount_hills/MountHills.otf') format('opentype');
+        src: url('{% static "fonts/mount_hills/MountHills.otf" %}') format('opentype');
     }
 
     @media (max-width: 600px) {
@@ -150,14 +150,21 @@
 <div class="card">
     <div class="card-header">{{ ticket.kode }}</div>
     <div class="card-body">
-        Nama : {{ ticket.nama }}<br><br>
-        Tiket : {{ ticket.tipe }}<br><br>
-        Kontak : {{ ticket.kontak }}<br><br>
-        Nama 2 : {{ ticket.nama2 }}<br><br>
-        Kontak 2 : {{ ticket.kontak2 }}<br><br>
-        Note : {{ ticket.note }}<br><br>
-        Status : {{ ticket.status }}<br><br>
-        {{ ticket. }}
+        Nama : {{ ticket.nama }}<br>
+        Kontak : {{ ticket.kontak }}<br>
+        Email : {{ ticket.email }}<br>
+        Asal Sekolah : {{ ticket.asal }}<br>
+        Tiket : {{ ticket.tipe }}<br>
+        {% if ticket.tipe == 'Bundle 2' %}
+        <div>
+            Nama 2 : {{ ticket.nama2 }}<br>
+            Kontak 2 : {{ ticket.kontak2 }}<br>
+            Email 2 : {{ ticket.email2 }}<br>
+            Asal Sekolah 2: {{ ticket.asal2 }}<br>
+        </div>
+        {% endif %}
+        Note : {{ ticket.note }}<br>
+        Status : {{ ticket.status }}<br>
     </div>
 </div>
 <div class="card2">

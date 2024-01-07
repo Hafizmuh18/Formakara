@@ -24,12 +24,18 @@ def submit_ticket(request):
     if request.method == 'POST':
         nama = request.POST['nama']
         kontak = request.POST['kontak']
+        email = request.POST['email']
+        asal = request.POST['asal']
         tipe = request.POST['tipe']
         nama2 = request.POST['nama2']
         kontak2 = request.POST['kontak2']
+        email2 = request.POST['email2']
+        asal2 = request.POST['asal2']
         if tipe != "Bundle 2":
             nama2 = ""
             kontak2= ""
+            email2 = ""
+            asal2 = ""
         note = request.POST['note']
         if note == "":
             note = "-"
@@ -41,9 +47,13 @@ def submit_ticket(request):
         ticket_submission = TicketSubmission(
             nama=nama,
             kontak=kontak,
+            email=email,
+            asal=asal,
             tipe=tipe,
             nama2=nama2,
             kontak2=kontak2,
+            email2=email2,
+            asal2=asal2,
             tf=tf,
             note=note
         )

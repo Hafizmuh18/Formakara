@@ -4,7 +4,7 @@
 {% load static %}
 <style>
     body {
-        background-image: url('/static/images/bg.png');
+        background-image: url('{% static "images/bg.png" %}');
         background-size: cover;
         background-position: center center;
         background-repeat: repeat; /* Set background-repeat to repeat */
@@ -68,7 +68,7 @@
 
     @font-face {
         font-family: 'Mount Hills';
-        src: url('/static/fonts/mount_hills/MountHills.otf') format('opentype');
+        src: url('{% static "fonts/mount_hills/MountHills.otf" %}') format('opentype');
     }
 
     input[type="file"] {
@@ -111,6 +111,16 @@
             </div>
 
             <div class="form-group">
+                <label for="email">Email :</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="asal">Asal Sekolah:</label>
+                <input type="text" id="asal" name="asal" required>
+            </div>
+
+            <div class="form-group" style="font-weight: bold; color: black; font-size: larger;">
                 <label for="priceDescription">
                     Price Description:<br>
                     List harga early bird (8-13 Januari)<br>
@@ -123,7 +133,7 @@
                     try out = 25k<br>
                     seminar = 35k<br>
                     bundling 1 orang = 55k<br>
-                    bundling 2 orang = 85k<br><br>
+                    bundling 2 orang = 100k<br><br>
                 </label>
             </div>
 
@@ -147,6 +157,25 @@
                 <input type="text" id="kontak2" name="kontak2">
             </div>
 
+            <div class="form-group" id="bundle2Fields2" style="display: none;">
+                <label for="email2">Email orang ke 2:</label>
+                <input type="text" id="email2" name="email2">
+            </div>
+
+            <div class="form-group" id="bundle2Fields3" style="display: none;">
+                <label for="asal2">Asal Sekolah orang ke 2:</label>
+                <input type="text" id="asal2" name="asal2">
+            </div>
+
+            <div class="form-group" style="font-weight: bold; color: black; font-size: larger;">
+                <label for="priceDescription">
+                    Dana: 082153261358 a.n Indriwati Syahputri Susanti<br>
+                    Gopay: 082153261358 a.n Indriwati Syahputri Susanti<br>
+                    No. Rekening: 1379631608 (BNI) a.n Indriwati Syahputri Susanti<br>
+                </label>
+            </div>
+
+
             <div class="form-group">
                 <label for="tf">Bukti Transfer (Image):</label>
                 <input type="file" id="tf" name="tf" accept="image/*" required>
@@ -158,7 +187,7 @@
                 <textarea id="note" name="note" rows="4" cols="50"></textarea>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="font-weight: bold; color: black; font-size: larger;">
                 <label for="priceDescription">
                     Narahubung : <br>
                     Nata <br>
@@ -180,14 +209,22 @@
     document.getElementById('tipe').addEventListener('change', function() {
         var bundle2Fields = document.getElementById('bundle2Fields');
         var bundle2Fields1 = document.getElementById('bundle2Fields1');
+        var bundle2Fields2 = document.getElementById('bundle2Fields2');
+        var bundle2Fields3 = document.getElementById('bundle2Fields3');
         if (this.value === 'Bundle 2') {
             bundle2Fields.style.display = 'block';
             bundle2Fields1.style.display = 'block';
+            bundle2Fields2.style.display = 'block';
+            bundle2Fields3.style.display = 'block';
         } else {
             bundle2Fields.style.display = 'none';
             bundle2Fields1.style.display = 'none';
+            bundle2Fields2.style.display = 'none';
+            bundle2Fields3.style.display = 'none';
             bundle2Fields.value = '-';
             bundle2Fields1.value = '-';
+            bundle2Fields2.value = '-';
+            bundle2Fields3.value = '-';
         }
     });
 </script>
