@@ -4,6 +4,7 @@ from .models import TicketSubmission
 from django.db.models import Q
 import random
 import string
+from django.views.decorators.csrf import csrf_exempt
 
 def custom_404(request, *args, **kwargs):
     return render(request, '404.html', status=404)
@@ -18,6 +19,7 @@ def make_ticket(request):
     context = {}
     return render(request, 'main.html', context)
 
+@csrf_exempt
 def submit_ticket(request):
     if request.method == 'POST':
         nama = request.POST['nama']
