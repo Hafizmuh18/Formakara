@@ -65,10 +65,10 @@ def submit_ticket(request):
         kode = "YBM-"+str(generate_random_string())+str(ticket_submission.pk)
         ticket_submission.kode = kode
         if tipe != "Seminar" :
-            username = generate_username(nama)+str(ticket_submission.pk)+str(int(len(nama) % 15))
+            username = generate_username(nama)+str(ticket_submission.pk)+str(int(len(nama) % 15))+"_"+str(generate_random_string())
             username2 = ""
             if tipe == "Bundle 2":
-                username2 = generate_username(nama2)+str(ticket_submission.pk)+"00"+str(int(len(nama2) % 15))
+                username2 = generate_username(nama2)+str(ticket_submission.pk)+"00"+str(int(len(nama2) % 15))+str(generate_random_string())
         else :
             username = ""
             username2 = ""
