@@ -1,8 +1,14 @@
+import os
 from django.db import models
 
 # Create your models here.
 from django.db import models
 from django.utils import timezone
+
+def upload_to(instance, filename):
+    now = timezone.now()
+    date_folder = now.strftime('%Y/%m/%d')
+    return os.path.join('images', date_folder, filename)
 
 class TicketSubmission(models.Model):
     kode=models.CharField(max_length=255, default="None")
@@ -17,7 +23,7 @@ class TicketSubmission(models.Model):
     kontak2 = models.CharField(max_length=255)
     email2 = models.CharField(max_length=255)
     asal2 = models.CharField(max_length=255)
-    tf = models.ImageField(upload_to='images/')
+    tf = models.ImageField(upload_to=upload_to)
     used = models.CharField(max_length=10, default="No")
     note = models.TextField(default="-")
     status = models.TextField(default="Tunggu Konfirmasi")

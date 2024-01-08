@@ -14,6 +14,10 @@ def generate_random_string(length=4):
     random_string = ''.join(random.choice(characters) for _ in range(length))
     return random_string
 
+def generate_username(nama):
+    splitted = nama.split(" ")[0]
+    return splitted
+
 # Create your views here.
 def make_ticket(request):
     context = {}
@@ -59,9 +63,16 @@ def submit_ticket(request):
         )
         ticket_submission.save()
         kode = "YBM-"+str(generate_random_string())+str(ticket_submission.pk)
-        kode2 = "YBM-"+str(generate_random_string())+str(ticket_submission.pk)+str(ticket_submission.pk+1)
         ticket_submission.kode = kode
-        ticket_submission.kode2 = kode2
+        if tipe != "Seminar" :
+            username = generate_username(nama)+str(ticket_submission.pk)+str(int(len(nama) % 15))
+            if tipe == "Bundle 2":
+                username2 = generate_username(nama2)+str(ticket_submission.pk)+str(int(len(nama2) % 15))
+        else :
+            username = ""
+            username2 = ""
+        ticket_submission.username = username
+        ticket_submission.username2 = username2
         ticket_submission.save()
 
         # Redirect to the 'show_ticket' view with the ticket ID as a parameter
