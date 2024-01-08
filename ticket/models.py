@@ -6,6 +6,8 @@ from django.utils import timezone
 
 class TicketSubmission(models.Model):
     kode=models.CharField(max_length=255, default="None")
+    username = models.CharField(max_length=255, default="None")
+    username2 = models.CharField(max_length=255, default="None")
     nama = models.CharField(max_length=255)
     kontak = models.CharField(max_length=255)
     email = models.CharField(max_length=255)

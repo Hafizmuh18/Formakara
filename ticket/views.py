@@ -59,7 +59,9 @@ def submit_ticket(request):
         )
         ticket_submission.save()
         kode = "YBM-"+str(generate_random_string())+str(ticket_submission.pk)
+        kode2 = "YBM-"+str(generate_random_string())+str(ticket_submission.pk)+str(ticket_submission.pk+1)
         ticket_submission.kode = kode
+        ticket_submission.kode2 = kode2
         ticket_submission.save()
 
         # Redirect to the 'show_ticket' view with the ticket ID as a parameter
