@@ -180,7 +180,7 @@
                 <label for="tf">Bukti Transfer (Image max 1 MB, compress kalo lebih):</label>
                 <input type="file" id="tf" name="tf" accept="image/*" required>
                 <label class="file-input-label" for="tf">Choose File</label>
-            </div>            
+              </div>          
             
             <div class="form-group">
                 <label for="note">Note tambahan (Jika Perlu):</label>
@@ -206,6 +206,21 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        // Attach change event to the file input
+        $('#tf').change(function(){
+        // Check if a file is selected
+        if ($(this).val()) {
+            // Get the file name and update the label text
+            var fileName = $(this).val().split('\\').pop();
+            $('.file-input-label').text(fileName + ' submitted');
+        } else {
+            // No file selected, revert to the default label text
+            $('.file-input-label').text('Choose File');
+        }
+        });
+    });
+
     document.getElementById('tipe').addEventListener('change', function() {
         var bundle2Fields = document.getElementById('bundle2Fields');
         var bundle2Fields1 = document.getElementById('bundle2Fields1');
