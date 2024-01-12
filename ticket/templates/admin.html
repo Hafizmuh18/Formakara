@@ -45,7 +45,6 @@
                     {% else %}
                         <a href="{% url 'ticket:set_unpayed' ticket_id=ticket.pk %}" class="btn btn-warning">Set Tunggu Konfirmasi</a>
                     {% endif %}
-                    <a href="{% url 'ticket:delete_ticket' ticket_id=ticket.pk %}" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         </div>

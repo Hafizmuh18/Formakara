@@ -40,7 +40,7 @@ def submit_ticket(request):
             kontak2= ""
             email2 = ""
             asal2 = ""
-        note = request.POST['note']
+        note = request.POST.get('note', '')
         if note == "":
             note = "-"
 
